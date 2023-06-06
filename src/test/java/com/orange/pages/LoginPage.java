@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
+    //just a change
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
