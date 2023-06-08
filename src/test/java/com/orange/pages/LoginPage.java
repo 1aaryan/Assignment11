@@ -14,9 +14,9 @@ public class LoginPage extends BasePage {
         super(driver);
     }
 
-    private final By userNameFld=By.xpath("//input[@placeholder='Username']");
+    private final By userNameFld=By.xpath("//input[@name='username']");
 
-    private final By passwordFld= By.xpath("//input[@placeholder='Password']");
+    private final By passwordFld= By.xpath("//input[@name='password']");
 
     private final By loginBtn= By.xpath("//button[@type='submit']");
 
@@ -50,7 +50,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage load(){
-        load("/");
+        load("");
         return this;
     }
 

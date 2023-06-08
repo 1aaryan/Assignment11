@@ -1,8 +1,10 @@
 package com.orange.base;
 
+import com.orange.utils.ConfigLoader;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class BasePage {
@@ -15,11 +17,11 @@ public class BasePage {
     }
 
     public WebDriverWait shortWait(){
-        wait=new WebDriverWait(driver, Duration.ofSeconds(40));
+        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
         return wait;
     }
 
-    public void load(String endpoint){
-        driver.get("https://opensource-demo.orangehrmlive.com"+ endpoint);
+    public void load(String endpoint)  {
+        driver.get( ConfigLoader.getInstance().getUrl() + endpoint);
     }
 }

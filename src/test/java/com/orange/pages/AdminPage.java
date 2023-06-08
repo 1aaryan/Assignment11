@@ -19,15 +19,19 @@ public class AdminPage extends BasePage {
 
     private final By empName= By.xpath("//input[@placeholder='Type for hints...']");
 
+    private final By empNameSuggestion= By.xpath("//div[@role='listbox']//span");
+
     private final By usrName= By.xpath("(//input[@class='oxd-input oxd-input--active'])[2]");
 
-    private final By password= By.xpath("(//input[@class='oxd-input oxd-input--active'])[3]");
+    private final By password= By.xpath("(//input[@type='password'])[1]");
 
-    private final By cnfPassword= By.xpath("(//input[@class='oxd-input oxd-input--active'])[4]");
+    private final By cnfPassword= By.xpath("(//input[@type='password'])[2]");
 
     private final By userRole= By.xpath("(//div[@class= 'oxd-select-text-input'])[1]");
 
     private final By status= By.xpath("(//div[@class= 'oxd-select-text-input'])[2]");
+
+    private final By saveBtn= By.xpath("//button[@type='submit']");
 
     public AdminPage clickAddBtn(){
         shortWait().until(ExpectedConditions.elementToBeClickable(addBtn)).click();
@@ -50,9 +54,11 @@ public class AdminPage extends BasePage {
         return this;
     }
 
-    public AdminPage enterEmpName(NewUserDetails newUserDetails){
+    public AdminPage enterEmpName(NewUserDetails newUserDetails) {
         shortWait().until(ExpectedConditions.visibilityOfElementLocated(empName)).clear();
         driver.findElement(empName).sendKeys(newUserDetails.getEmployeeName());
+        shortWait().until(ExpectedConditions.textToBe(empNameSuggestion, newUserDetails.getEmployeeName()));
+        driver.findElement(empNameSuggestion).click();
         return this;
     }
 
@@ -62,15 +68,22 @@ public class AdminPage extends BasePage {
         return this;
     }
 
-    public AdminPage enterPassword(NewUserDetails newUserDetails){
-        shortWait().until(ExpectedConditions.visibilityOfElementLocated(password)).clear();
+    public AdminPage enterPassword(NewUserDetails newUserDetails) {
+//        shortWait().until(ExpectedConditions.elementSelectionStateToBe(password, true));
         driver.findElement(password).sendKeys(newUserDetails.getPassword());
+        System.out.println(newUserDetails.getPassword());
         return this;
     }
 
     public AdminPage enterCnfPassword(NewUserDetails newUserDetails){
-        shortWait().until(ExpectedConditions.visibilityOfElementLocated(cnfPassword)).clear();
+
+//        shortWait().until(ExpectedConditions.elementSelectionStateToBe(cnfPassword, true));
         driver.findElement(cnfPassword).sendKeys(newUserDetails.getCnfPassword());
+        return this;
+    }
+
+    public AdminPage clickSaveBtn(){
+        shortWait().until(ExpectedConditions.elementToBeClickable(saveBtn)).click();
         return this;
     }
 }

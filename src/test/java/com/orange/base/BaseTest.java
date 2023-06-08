@@ -16,6 +16,7 @@ public class BaseTest {
     @BeforeMethod
     public void startDriver(){
         String browser=System.getProperty("browser");
+        if(browser==null)browser="CHROME";
         driver=new DriverManager().initializeDriver(browser);
     }
 

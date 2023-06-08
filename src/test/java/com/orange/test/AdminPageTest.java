@@ -4,6 +4,7 @@ import com.orange.base.BaseTest;
 import com.orange.objects.NewUserDetails;
 import com.orange.pages.AdminPage;
 import com.orange.pages.LoginPage;
+import com.orange.utils.ConfigLoader;
 import com.orange.utils.JacksonUtils;
 import org.testng.annotations.Test;
 
@@ -16,8 +17,8 @@ public class AdminPageTest extends BaseTest {
     public void clickOnAdmin() throws IOException {
         AdminPage adminPageObj= new LoginPage(driver).
                 load().
-                enterUserName("Admin").
-                enterPassword("admin123").
+                enterUserName(ConfigLoader.getInstance().getUserName()).
+                enterPassword(ConfigLoader.getInstance().getPassword()).
                 clickSubmit().
                 clickAdmin();
         NewUserDetails newUserDetailsObj=JacksonUtils.deserializeJson("userDetails.json", NewUserDetails.class);
@@ -28,8 +29,8 @@ public class AdminPageTest extends BaseTest {
                 enterEmpName(newUserDetailsObj).
                 enterUsrName(newUserDetailsObj).
                 enterPassword(newUserDetailsObj).
-                enterCnfPassword(newUserDetailsObj);
-
+                enterCnfPassword(newUserDetailsObj).
+                clickSaveBtn();
 
     }
 }
