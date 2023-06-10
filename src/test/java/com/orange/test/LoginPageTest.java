@@ -3,6 +3,7 @@ package com.orange.test;
 import com.orange.base.BaseTest;
 import com.orange.pages.DashboardPage;
 import com.orange.pages.LoginPage;
+import com.orange.utils.ConfigLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,19 +16,10 @@ public class LoginPageTest extends BaseTest {
         LoginPage loginPageObj= new LoginPage(driver);
         String invalidCredentialAlert=loginPageObj.
                 load().
-                enterUserName("admin123").
-                enterPassword("pass").
+                enterUserName("Admin").
+                enterPassword("admin1234").
                 clickSubmitUnsuccessful();
         Assert.assertEquals(invalidCredentialAlert, "Invalid credentials");
     }
 
-//    @Test
-//    public void successfulLogin(){
-//        LoginPage loginPageObj=new LoginPage(driver);
-//        DashboardPage dashboardPageObj=loginPageObj.
-//                load().
-//                enterUserName("Admin").
-//                enterPassword("admin123").
-//                clickSubmit();
-//    }
 }

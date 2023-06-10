@@ -6,6 +6,7 @@ import com.orange.pages.AdminPage;
 import com.orange.pages.LoginPage;
 import com.orange.utils.ConfigLoader;
 import com.orange.utils.JacksonUtils;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ public class AdminPageTest extends BaseTest {
 
 
     @Test
-    public void clickOnAdmin() throws IOException {
+    public void clickOnAdmin() throws IOException, InterruptedException {
         AdminPage adminPageObj= new LoginPage(driver).
                 load().
                 enterUserName(ConfigLoader.getInstance().getUserName()).
@@ -31,6 +32,9 @@ public class AdminPageTest extends BaseTest {
                 enterPassword(newUserDetailsObj).
                 enterCnfPassword(newUserDetailsObj).
                 clickSaveBtn();
+
+        Assert.assertEquals(adminPageObj.getSuccessMessage(), "Success");
+
 
     }
 }

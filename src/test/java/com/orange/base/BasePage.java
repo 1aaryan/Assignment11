@@ -17,7 +17,7 @@ public class BasePage {
     }
 
     public WebDriverWait shortWait(){
-        wait=new WebDriverWait(driver, Duration.ofSeconds(60));
+        wait=new WebDriverWait(driver, Duration.ofSeconds(20));
         return wait;
     }
 

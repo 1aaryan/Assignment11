@@ -1,22 +1,27 @@
 package com.orange.test;
 
 import com.orange.base.BaseTest;
+import com.orange.objects.NewUserDetails;
 import com.orange.pages.DashboardPage;
 import com.orange.pages.LoginPage;
-import com.orange.utils.ConfigLoader;
+import com.orange.utils.JacksonUtils;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class DashboardPageTest extends BaseTest {
+import java.io.IOException;
+
+public class NewUserTest extends BaseTest {
+
 
     @Test
-    public void validateSuccessfulLogin(){
-        LoginPage loginPageObj=new LoginPage(driver);
-        DashboardPage dashboardPageObj=loginPageObj.
-                load().
-                enterUserName(ConfigLoader.getInstance().getUserName()).
-                enterPassword(ConfigLoader.getInstance().getPassword()).
-                clickSubmit();
+    public void verifyNewCreatedUser() throws IOException {
+        NewUserDetails newUserDetails= JacksonUtils.deserializeJson("userDetails.json", NewUserDetails.class);
+        DashboardPage dashboardPageObj=new LoginPage(driver).
+                    load().
+                    enterUserName(newUserDetails.getUserName()).
+                    enterPassword(newUserDetails.getPassword()).
+                    clickSubmit();
+
         String timeAtWork=dashboardPageObj.timeAtWorkText();
         Assert.assertEquals(timeAtWork, "Time at Work");
 
@@ -35,6 +40,4 @@ public class DashboardPageTest extends BaseTest {
         String employeeDistribution= dashboardPageObj.employeeDistributionText();
         Assert.assertEquals(employeeDistribution, "Employee Distribution by Sub Unit");
     }
-
-
 }
