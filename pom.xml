@@ -12,9 +12,9 @@
                 <configuration>
                     <!--<parallel>methods</parallel>
                     <threadCount>2</threadCount>-->
-                    <!--<suiteXmlFiles>
-                        <suiteXmlFile>src/test/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>-->
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
                 </configuration>
             </plugin>
         </plugins>
