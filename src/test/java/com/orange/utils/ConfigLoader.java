@@ -1,6 +1,8 @@
 package com.orange.utils;
 
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class ConfigLoader {
@@ -9,7 +11,8 @@ public class ConfigLoader {
     private static ConfigLoader configLoader;
 
     private ConfigLoader()  {
-        properties= PropertyUtils.propertyLoader("/Users/aaryanfueled/IdeaProjects/Assignment11/src/test/resources/config.properties");
+        String directory= System.getProperty("user.dir");
+        properties= PropertyUtils.propertyLoader(directory+ "/src/test/resources/config.properties");
     }
 
     public static ConfigLoader getInstance() {
